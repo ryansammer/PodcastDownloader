@@ -164,7 +164,7 @@ for xml_site in pod_List:
     Channel = getFirstChannel(xml_parsed)
     episode_comment = returnItemElement("description", Item)
     pod_title = returnChannelElement("title", Channel)
-    episode_title = returnItemElement("title", Item)
+    episode_title = returnItemElement("title", Item).rstrip('\n')
     episode_title = episode_title.replace("/", "")
     pod_author = returnChannelElement("itunes:author", Channel)
     pod_author = pod_author.split("/")[0]

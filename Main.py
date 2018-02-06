@@ -187,8 +187,8 @@ for xml_site in pod_List:
     try:
         urllib.request.urlretrieve(url, directory)
         sheet.update_cell(i, 3, time.strftime('%Y-%m-%d %H:%M:%S'))
-    except "HTTP Error 403":
-        sheet.update_cell(i, 3, "Error")
+    except urllib.error.HTTPError:
+        sheet.update_cell(i, 3, "HTTP Error: "+url)
         continue
 
     sheet.update_cell(i, 2, episode_title)

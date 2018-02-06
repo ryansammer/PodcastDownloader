@@ -184,6 +184,7 @@ for xml_site in pod_List:
     url = getURL(Item, "enclosure", 5)
     print(time.strftime('%Y-%m-%d %H:%M:%S') + " Downloading new " + pod_title + " episode " + episode_title)
     print("")
+    sheet.update_cell(i, 2, episode_title)
     try:
         urllib.request.urlretrieve(url, directory)
         sheet.update_cell(i, 3, time.strftime('%Y-%m-%d %H:%M:%S'))
@@ -195,8 +196,6 @@ for xml_site in pod_List:
         except urllib.error.HTTPError:
             sheet.update_cell(i, 3, "HTTP Error: "+url)
             continue
-
-    sheet.update_cell(i, 2, episode_title)
     urllib.request.urlcleanup()
     i=i+1
     cleanup(7, os.path.dirname(download_path))

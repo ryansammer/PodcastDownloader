@@ -186,12 +186,12 @@ for xml_site in pod_List:
     print("")
     try:
         urllib.request.urlretrieve(url, directory)
-    except  "HTTP Error 403":
+        sheet.update_cell(i, 3, time.strftime('%Y-%m-%d %H:%M:%S'))
+    except "HTTP Error 403":
         sheet.update_cell(i, 3, "Error")
         continue
 
     sheet.update_cell(i, 2, episode_title)
-    sheet.update_cell(i, 3, time.strftime('%Y-%m-%d %H:%M:%S'))
     urllib.request.urlcleanup()
     i=i+1
     cleanup(7, os.path.dirname(download_path))

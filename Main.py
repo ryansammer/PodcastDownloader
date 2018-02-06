@@ -113,7 +113,7 @@ def mutagenid3Tagging():
 
 def remove(path):
     """
-    Remove the file or directory
+    Remove the file or
     """
     if os.path.isdir(path):
         try:

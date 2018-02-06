@@ -9,7 +9,7 @@ import time
 from optparse import OptionParser
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
-
+from time import sleep
 
 def optionParser():
     parser = OptionParser()
@@ -188,8 +188,13 @@ for xml_site in pod_List:
         urllib.request.urlretrieve(url, directory)
         sheet.update_cell(i, 3, time.strftime('%Y-%m-%d %H:%M:%S'))
     except urllib.error.HTTPError:
-        sheet.update_cell(i, 3, "HTTP Error: "+url)
-        continue
+        sleep(5)
+        try:
+            urllib.request.urlretrieve(url, directory)
+            sheet.update_cell(i, 3, time.strftime('%Y-%m-%d %H:%M:%S'))
+        except urllib.error.HTTPError:
+            sheet.update_cell(i, 3, "HTTP Error: "+url)
+            continue
 
     sheet.update_cell(i, 2, episode_title)
     urllib.request.urlcleanup()

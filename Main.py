@@ -184,7 +184,12 @@ for xml_site in pod_List:
     url = getURL(Item, "enclosure", 5)
     print(time.strftime('%Y-%m-%d %H:%M:%S') + " Downloading new " + pod_title + " episode " + episode_title)
     print("")
-    urllib.request.urlretrieve(url, directory)
+    try:
+        urllib.request.urlretrieve(url, directory)
+    except  "HTTP Error 403":
+        sheet.update_cell(i, 3, "Error")
+        continue
+
     sheet.update_cell(i, 2, episode_title)
     sheet.update_cell(i, 3, time.strftime('%Y-%m-%d %H:%M:%S'))
     urllib.request.urlcleanup()

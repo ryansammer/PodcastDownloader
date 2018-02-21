@@ -176,7 +176,6 @@ for xml_site in pod_List:
         os.makedirs(directory)
         Image_URL = returnImageElement('url')
         urllib.request.urlretrieve(Image_URL, directory + "/cover.jpg")
-    print(sheet.cell(i, 1).value)
     directory = os.path.dirname(download_path) + "/" + episode_title + ".mp3"
     if os.path.exists(directory):
         i=i+1
